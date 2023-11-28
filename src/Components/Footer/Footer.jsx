@@ -9,7 +9,7 @@ export default function Footer() {
             <h3>
             ~~ Collab Wave ~~
             </h3>
-            <small>Developed by <a href="http://ankitsinghchauhan.tech/">Ankit Singh Chauhan</a></small>
+            <small>Developed by <a href="http://ankitsinghchauhan.in/">Ankit Singh Chauhan</a></small>
         </main>
     )
 }
