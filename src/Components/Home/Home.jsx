@@ -1,15 +1,7 @@
 import React from 'react'
 import "./Home.css"
-
-import { getAuth } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
-import { doc, getDoc, getFirestore } from "firebase/firestore";
-import firebaseConfig from '../../firebaseConfig';
 import mainImg from "./mainImg.svg"
 export default function Home(props) {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
     return (
         <main className="main_home" id={props.id} >
             <div className='align' style={{ flexDirection: "row" }} >

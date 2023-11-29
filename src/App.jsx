@@ -31,6 +31,7 @@ export default function App() {
           <Route element={<Login />} path="login" />
           <Route element={<Signup />} path="signup" />
           <Route element={<Tasks />} path={`user/auth/edit/codes/${userID}`} />
+          <Route element={<Tasks />} path="codes" />
           <Route element={<Messages />} path={`/messages/${userID}`} />
         <Route path={`user/${userID}`} element={
           <>

@@ -73,7 +73,12 @@ export default function Navbar(props) {
     const userID = parts[parts.length - 1];
 
     const movetoauth = () => {
-        window.location.href = `auth/edit/codes/${userID}`
+        if(userID){
+            window.location.href = `auth/edit/codes/${userID}`;
+        }
+        else{
+            window.location.href = `codes`;
+        }
     }
 
     return (

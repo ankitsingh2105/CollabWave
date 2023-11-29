@@ -55,6 +55,7 @@ export default function Tasks() {
                 async function operate() {
                     const docRef = doc(db, "users", user.uid);
                     const docSnap = await getDoc(docRef);
+                    setuserName(docSnap._document.data.value.mapValue.fields.userID.stringValue);
                     if (docSnap.exists()) {
                         setarray(docSnap.data().arrayOfObject || []);
                     }
@@ -112,22 +113,6 @@ export default function Tasks() {
 
     const handleClose = async () => {
         setviewEditor(false);
-    }
-
-    function getDateDifference(inputDate) {
-        const inputDateObj = new Date(inputDate);
-        const currentDate = new Date();
-        const inputYear = inputDateObj.getFullYear();
-        const inputMonth = inputDateObj.getMonth();
-        const inputDay = inputDateObj.getDate();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth();
-        const currentDay = currentDate.getDate();
-        const inputDateOnly = new Date(inputYear, inputMonth, inputDay);
-        const currentDateOnly = new Date(currentYear, currentMonth, currentDay);
-        const differenceInMilliseconds = currentDateOnly - inputDateOnly;
-        const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
-        return differenceInDays;
     }
 
 
@@ -234,27 +219,6 @@ export default function Tasks() {
         setchangedValue(e.target.value);
     }
 
-    const filterArray = async (e) => {
-        setloading(true);
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-        setloading(false);
-        let updatedArray = docSnap.data().arrayOfObject || [];;
-        if (e === "completed") {
-            updatedArray = updatedArray.filter((e) => {
-                console.log("in the first one ")
-                return getDateDifference(e.dueDate) > 0;
-            })
-        }
-        else if (e === "not_completed") {
-            console.log("in the seocnd one ")
-            updatedArray = updatedArray.filter((e) => {
-                return getDateDifference(e.dueDate) <= 0;
-            })
-        }
-        setarray(updatedArray);
-    }
-
     const dayandData = getCurrentTimeAndDay();
 
 
@@ -276,9 +240,12 @@ export default function Tasks() {
     };
 
 
-    const share = (e) => {
+    const share = async(e) => {
         setsendThis(true);
         setShareCode(e)
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        setuserName(docSnap._document.data.value.mapValue.fields.userID.stringValue);
     }
 
 
