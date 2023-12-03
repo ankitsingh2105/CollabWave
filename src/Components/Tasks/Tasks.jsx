@@ -185,7 +185,7 @@ export default function Tasks() {
         editRef.current.value = codeInfo;
     }
 
-    const handleEditSave = async (date, task) => {
+    const handleEditSave = async (date) => {
         const updatedArray = array.map((e) => {
             if (e.dateAndTime === date) {
                 if (changedValue !== "") {
@@ -233,7 +233,7 @@ export default function Tasks() {
                 message: message,
                 senderDisplayName: auth.currentUser.displayName,
             });
-            console.log('Message sent successfully:', newMessageDoc.id);
+            toast.success('Message sent successfully:', newMessageDoc.id);
         } catch (error) {
             console.error('Error sending message:', error);
         }

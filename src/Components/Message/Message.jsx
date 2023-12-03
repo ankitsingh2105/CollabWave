@@ -16,7 +16,7 @@ export default function Message(props) {
         const message = e.target.message.value;
         let user = auth.currentUser;
         const db = getFirestore(app);
-        const ref = doc(db, 'messages', user.uid);
+        const ref = doc(db, 'messengers', user.uid);
         await setDoc(ref, {
             messengers: { message: message, name: name, email: email }
         });
